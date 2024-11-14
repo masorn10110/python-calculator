@@ -19,10 +19,17 @@ class Calculator:
         return result
 
     def divide(self, a, b):
+        if(b == 0): # handle case divide by 0
+            return ZeroDivisionError
         result = 0
-        while a > b:
+        flag = 1 if(b < 0) else 0 # create flag
+        if(flag):
+            b = 0 - b
+        while a >= b: # change > to >=
             a = self.subtract(a, b)
             result += 1
+        if(flag): # inverse value that should be negative
+            result = 0 - result
         return result
     
     def modulo(self, a, b):

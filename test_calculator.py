@@ -17,7 +17,10 @@ class TestCalculator(unittest.TestCase):
     def test_mul(self):
         self.assertEqual(self.calc.multiply(5, -1), -5) # before edit return 0, now correct
         self.assertEqual(self.calc.multiply(2, 5), 10) # before edit return 12, now correct
-        
+    
+    def test_div(self):
+        self.assertEqual(self.calc.divide(5, 0), ZeroDivisionError) # before edit loop deadlock, now correct
+        self.assertEqual(self.calc.divide(10, -2), -5) # before edit loop deadlock, now correct
 
     # Add the following test methods to the TestCalculator class:
 

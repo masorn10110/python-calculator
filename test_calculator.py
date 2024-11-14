@@ -7,7 +7,17 @@ class TestCalculator(unittest.TestCase):
         self.calc = Calculator()
 
     def test_add(self):
-        self.assertEqual(self.calc.add(1, 2), 3)
+        self.assertEqual(self.calc.add(1, 2), 3) # correct
+        self.assertEqual(self.calc.add(5, 3), 8) # correct
+
+    def test_sub(self):
+        self.assertEqual(self.calc.subtract(2, 5), -3) # before edit return 3, now correct
+        self.assertEqual(self.calc.subtract(3, 1), 2) # before edit return -2, now correct
+
+    def test_mul(self):
+        self.assertEqual(self.calc.multiply(5, -1), -5) # before edit return 0, now correct
+        self.assertEqual(self.calc.multiply(2, 5), 10) # before edit return 12, now correct
+        
 
     # Add the following test methods to the TestCalculator class:
 

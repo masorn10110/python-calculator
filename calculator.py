@@ -3,12 +3,19 @@ class Calculator:
         return a + b
 
     def subtract(self, a, b):
-        return b - a
+        return a - b # swap b and a
 
     def multiply(self, a, b):
         result = 0
-        for i in range(b+1):
-            result = self.add(result, a)
+        flag = 1 if(b < 0) else 0 # create flag
+        if(flag):
+            b = 0 - b
+        for i in range(b): # change b+1 to b
+            if(flag): # create codition handle case b < 0
+                result = self.subtract(result, a)
+            else:
+                result = self.add(result, a)
+
         return result
 
     def divide(self, a, b):

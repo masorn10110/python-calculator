@@ -15,27 +15,45 @@ class Calculator:
                 result = self.subtract(result, a)
             else:
                 result = self.add(result, a)
-
         return result
 
     def divide(self, a, b):
         if(b == 0): # handle case divide by 0
             return ZeroDivisionError
         result = 0
-        flag = 1 if(b < 0) else 0 # create flag
-        if(flag):
+        flag1 = 1 if(b < 0) else 0 # create flag
+        flag2 = 1 if(a < 0) else 0 # create flag
+        if(flag1):
             b = 0 - b
+        if(flag2):
+            a = 0 - a
         while a >= b: # change > to >=
             a = self.subtract(a, b)
             result += 1
-        if(flag): # inverse value that should be negative
+        if(flag1): # inverse value that should be negative
+            result = 0 - result
+        if(flag2):
             result = 0 - result
         return result
     
     def modulo(self, a, b):
-        while a <= b:
-            a = a-b
-        return a
+        if(b == 0): # handle case divide by 0
+            return ZeroDivisionError
+        flag1 = 1 if(b < 0) else 0 # create flag
+        flag2 = 1 if(a < 0) else 0 # create flag
+        while 1: # add more condition to handle all case
+            if(flag1 == flag2): # case have same sign
+                a = a-b
+                if(flag1 and a > b):
+                    return a
+                if((not flag1) and a < b):
+                    return a
+            else: # case have different sign
+                a = a+b
+                if(flag1 and a < b):
+                    return a - b
+                if((not flag1) and a > b):
+                    return a - b
 
 # Example usage:
 if __name__ == "__main__":
